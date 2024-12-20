@@ -130,16 +130,5 @@ namespace Flarum.Provider
                         success => success?.Data.User,
                         error => new()));
         }
-/*
-        public async Task<FlarumTag> GetFlarumTagByIdAsync(int id)
-        {
-            var request = new GetUserInfoRequest() { UserId = id };
-            var result = await RequestAsync<GetTagInfoRequest, GetUserInfoResponse, ErrorResultBase, GetUserInfoActualRequest>(new GetUserInfoApi(), new GetUserInfoRequest() { UserId = 58 });
-            return UserDataToFlarumUserMapper.MapToFlarumUser(
-                    result.Match(
-                        success => success?.Data.User,
-                        error => new()));
-        }
-*/
     }
 }
