@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flarum.Api.Bases.ModelBases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Flarum.Api.Models.ResponseModel
 {
-    public class FlarumUserDto
+    public class FlarumUserDto : FlarumModelBase
     {
         [JsonPropertyName("username")] public string Username { get; set; }
         [JsonPropertyName("displayName")] public string DisplayName { get; set; }

@@ -37,7 +37,7 @@ namespace Flarum.Api.Models.ResponseModel
         // Forum configs.
         [JsonPropertyName("showLanguageSelector")] public bool ShowLanguageSelector { get; set; }
         [JsonPropertyName("allowSignUp")] public bool AllowSignUp { get; set; }
-        [JsonPropertyName("canViewForum")] public bool canViewForum { get; set; }
+        [JsonPropertyName("canViewForum")] public bool CanViewForum { get; set; }
         [JsonPropertyName("canStartDiscussion")] public bool CanStartDiscussion { get; set; }
         [JsonPropertyName("canSearchUser")] public bool CanSearchUser { get; set; }
         [JsonPropertyName("canCreateAccessToken")] public bool CanCreateAccessToken { get; set; }

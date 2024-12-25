@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using Flarum.Api.Bases.ModelBases;
+using System.Text.Json.Serialization;
 
 namespace Flarum.Api.Models.ResponseModel
 {
-    public class FlarumDiscussionDto
+    public class FlarumDiscussionDto : FlarumModelBase
     {
         [JsonPropertyName("title")] public string Title { get; set; }
         [JsonPropertyName("slug")] public string Slug { get; set; }

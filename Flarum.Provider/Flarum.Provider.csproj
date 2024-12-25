@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0; netstandard2.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -13,7 +13,16 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/zhh135/Flarum.Sdk</RepositoryUrl>
     <PackageProjectUrl>https://github.com/zhh135/Flarum.Sdk</PackageProjectUrl>
+	<LangVersion>Latest</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Contracts\Models\IHasRelationships.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Contracts\Models\IHasRelationships.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Flarum.Api\Flarum.Api.csproj" />

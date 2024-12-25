@@ -6,8 +6,6 @@ using Flarum.Api.Models.ResponseModel;
 using Flarum.Provider.Mappers;
 using Flarum.Provider.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +15,9 @@ namespace Flarum.Provider
     public class FlarumProvider
     {
         public FlarumApiHandlerOption Option { get; set; } = new FlarumApiHandlerOption();
-        public FlarumApiHandler Handler { get; } = new FlarumApiHandler();
+        public FlarumUser CurrentUser { get; set; }
 
+        private FlarumApiHandler Handler { get; } = new FlarumApiHandler();
         private string Token { get; set; }
 
         #region Request Methods
@@ -123,12 +122,28 @@ namespace Flarum.Provider
 
         public async Task<FlarumUser> GetFlarumUserByIdAsync(int id)
         {
-            var request = new GetUserInfoRequest() { UserId = id };
-            var result = await RequestAsync<GetUserInfoRequest, GetUserInfoResponse, ErrorResultBase, GetUserInfoActualRequest>(new GetUserInfoApi(), new GetUserInfoRequest() { UserId = 58 });
+            var request = new GetUserInfoRequest() {
+             UserId = id ,
+             Token = Token};
+            var result = await RequestAsync<GetUserInfoRequest, GetUserInfoResponse, ErrorResultBase, GetUserInfoActualRequest>(new GetUserInfoApi(), request);
             return UserDataToFlarumUserMapper.MapToFlarumUser(
                     result.Match(
                         success => success?.Data.User,
                         error => new()));
+        }
+
+        public async Task<bool> SignInByPasswordAsync(string identification, string password)
+        {
+            var request = new GetUserTokenRequest { Identification = identification, Password = password };
+            var result = await RequestAsync<GetUserTokenRequest, GetUserTokenResponse, ErrorResultBase, GetUserTokenActualRequest>(new GetUserTokenApi(), request);
+            result.Match(
+                async success => { Token = success?.Token;
+                    CurrentUser = await GetFlarumUserByIdAsync((int)int.Parse(success?.UserId));
+                    return true;
+                },
+                error => null
+              );
+            return false;
         }
     }
 }
