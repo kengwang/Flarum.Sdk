@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Flarum.Sample.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Flarum.Sample.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
