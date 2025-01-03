@@ -1,3 +1,4 @@
+using Flarum.Api.Models.ResponseModel;
 using Flarum.Provider.Models;
 using System;
 
@@ -5,7 +6,7 @@ namespace Flarum.Provider.Mappers
 {
     public class ForumDataToFlarumForumMapper
     {
-        public static FlarumForum MapToFlarumForum(FlarumForum data)
+        public static FlarumForum MapToFlarumForum(FlarumForumDto data)
         {
             return new FlarumForum
             {
