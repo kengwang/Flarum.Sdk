@@ -119,6 +119,14 @@ namespace Flarum.Provider
             }
         }
         #endregion
+        public async Task<FlarumForum> GetFlarumForumAsync()
+        {
+            var result = await RequestAsync<GetForumInfoRequest, GetForumInfoResponse, ErrorResultBase, GetForumInfoActualRequest>(new GetForumInfoApi());
+            return ForumDataToFlarumForumMapper.MapToFlarumForum(
+                    result.Match(
+                        success => success?.Data.flarumForum,
+                        error => new()));
+        }
 
         public async Task<FlarumUser> GetFlarumUserByIdAsync(int id)
         {
