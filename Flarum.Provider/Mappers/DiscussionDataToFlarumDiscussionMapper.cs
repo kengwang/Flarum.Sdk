@@ -15,7 +15,7 @@ namespace Flarum.Provider.Mappers
             return new FlarumDiscussion
             {
 
-            }
+            };
         }
     }
 }
